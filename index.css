@@ -1,0 +1,128 @@
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --background-color: #fff;
+}
+
+body {
+  font-size: 14px;
+  font-family: Arial, sans-serif, system-ui;
+  font-weight: 500;
+  padding: 0;
+  margin: 0;
+  user-select: none;
+  background-color: var(--background-color);
+  transition: background-color 0.1s ease;
+}
+
+.app-wrap {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+header {
+  position: relative;
+  width: 100%;
+  height: 60px;
+  background-color: rgba(0, 0, 0, 0.02);
+  box-shadow: 0 0 5px 0 #a1a1a1;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+main {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.main-card {
+	padding: 1em;
+	margin: auto;
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	max-width: 800px;
+	border-radius: 8px;
+    border: 5px solid #ddd;
+    background: #efefef;
+	box-shadow: #efefef 0 4px 0 0;
+}
+
+.main-card.clicked {
+	/*background-color: rgba(100,70,50,0.1);*/
+	transition: none;
+}
+
+.main-card > .top {
+	position: relative;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    flex: 1;
+}
+
+
+.main-card > * + * {
+	margin-top: 8px;
+}
+
+.container {
+	height: 100%;
+	width: auto;
+	display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	align-items: center;
+	justify-content: flex-start;
+	column-gap: 8px;
+	font-size: 2em;
+	font-weight: 800;
+	padding: 8px;
+	border: 3px solid #aaa;
+	border-radius: 8px;
+	color: #eee;
+	background-color: var(--background-color);
+	transition: background-color 1s ease, color 1s ease, transform .2s ease, box-shadow .2s ease;
+	min-width: 300px;
+}
+
+.container > .count {
+	font-size: 2em;
+}
+
+.container + .container {
+	margin-left: 8px;
+}
+
+.container[data-type=current] {
+	background-color: rgba(70, 20, 200, 0.6);
+	border: 4px solid rgba(70, 20, 200, 0.65);
+	box-shadow: rgba(70, 20, 200, 0.6) 0 4px 0 0;
+}
+
+.container[data-type=picker] input {
+  width: 100%;
+  height: 100%;
+  font-size: 0.6em;
+  border: unset;
+}
