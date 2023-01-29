@@ -1,5 +1,5 @@
-const counter = document.querySelector(".container[data-type=current] > div.count");
-const subtitle = document.querySelector(".container[data-type=current] > div.subtitle");
+const s_counter = document.querySelector(".container[data-type=seconds] > div.count");
+const s_subtitle = document.querySelector(".container[data-type=seconds] > div.subtitle");
 const picker = document.querySelector("input#datetime");
 
 /**
@@ -9,12 +9,12 @@ const picker = document.querySelector("input#datetime");
  */
 function declination(value, words) {
   function declineWord(val, words) {
-      const value = Math.abs(val) % 100;
-      const num = value % 10;
-      if (value > 10 && value < 20) return words[2];
-      if (num > 1 && num < 5) return words[1];
-      if (num == 1) return words[0];
-      return words[2];
+    const value = Math.abs(val) % 100;
+    const num = value % 10;
+    if (value > 10 && value < 20) return words[2];
+    if (num > 1 && num < 5) return words[1];
+    if (num == 1) return words[0];
+    return words[2];
   }
   const word = declineWord(value, words);
   return `${word}`;
@@ -29,8 +29,8 @@ const updateContainer = () => {
   const dif = t1.getTime() - t2.getTime();
   let nextState = Math.round(dif / 1000);
   if (prevState != nextState) {
-    counter.innerText = nextState;
-    subtitle.innerText = declination(nextState, ["секунда", "секунды", "секунд"]);
+    s_counter.innerText = nextState;
+    s_subtitle.innerText = declination(nextState, ["секунда", "секунды", "секунд"]);
     prevState = nextState;
   }
   window.requestAnimationFrame(updateContainer);

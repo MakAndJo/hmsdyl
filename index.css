@@ -114,7 +114,7 @@ main {
 	margin-left: 8px;
 }
 
-.container[data-type=current] {
+.container[data-type=seconds] {
 	background-color: rgba(70, 20, 200, 0.6);
 	border: 4px solid rgba(70, 20, 200, 0.65);
 	box-shadow: rgba(70, 20, 200, 0.6) 0 4px 0 0;
