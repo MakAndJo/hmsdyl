@@ -7,6 +7,10 @@ const h_counter = document.querySelector(".container[data-type=hours] > div.coun
 const h_subtitle = document.querySelector(".container[data-type=hours] > div.subtitle");
 const d_counter = document.querySelector(".container[data-type=days] > div.count");
 const d_subtitle = document.querySelector(".container[data-type=days] > div.subtitle");
+const mn_counter = document.querySelector(".container[data-type=month] > div.count");
+const mn_subtitle = document.querySelector(".container[data-type=month] > div.subtitle");
+const yy_counter = document.querySelector(".container[data-type=years] > div.count");
+const yy_subtitle = document.querySelector(".container[data-type=years] > div.subtitle");
 
 /**
  * Declination value
@@ -80,6 +84,12 @@ function shallowEqual(objA, objB) {
   return true;
 }
 
+function monthDifference(dateFrom, dateTo) {
+  return dateTo.getMonth() - dateFrom.getMonth() +
+    (12 * (dateTo.getFullYear() - dateFrom.getFullYear()))
+}
+const yearsDifference = (dateFrom, dateTo) => new Date(dateTo - dateFrom).getFullYear() - 1970
+
 let dateFrom = new Date();
 let prevState = undefined;
 
@@ -91,11 +101,15 @@ const updateContainer = () => {
   const minutes = Math.floor(seconds / 60);
   const hours = Math.floor(minutes / 60);
   const days = Math.floor(hours / 24);
+  const month = monthDifference(t2, t1);
+  const years = yearsDifference(t2, t1);
   let nextState = {
     seconds: seconds,
     minutes: minutes,
     hours: hours,
     days: days,
+    month: month,
+    years: years,
   }
   if (!shallowEqual(prevState, nextState)) {
     if (prevState?.seconds != nextState.seconds) {
@@ -113,6 +127,14 @@ const updateContainer = () => {
     if (prevState?.days != nextState.days) {
       d_counter.innerText = nextState.days;
       d_subtitle.innerText = declination(nextState.days, ["день", "дня", "дней"]);
+    }
+    if (prevState?.month != nextState.month) {
+      mn_counter.innerText = nextState.month;
+      mn_subtitle.innerText = declination(nextState.month, ["месяц", "месяца", "месяцев"]);
+    }
+    if (prevState?.years != nextState.years) {
+      yy_counter.innerText = nextState.years;
+      yy_subtitle.innerText = declination(nextState.years, ["год", "года", "лет"]);
     }
     prevState = nextState;
   }
