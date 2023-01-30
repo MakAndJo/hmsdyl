@@ -34,18 +34,6 @@ body {
   justify-content: flex-start;
 }
 
-header {
-  position: relative;
-  width: 100%;
-  height: 50px;
-  background-color: rgba(0, 0, 0, 0.02);
-  box-shadow: 0 0 5px 0 #a1a1a1;
-  padding: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-}
-
 main {
   position: relative;
   width: 100%;
@@ -83,14 +71,30 @@ main {
   flex: 1;
 }
 
+h1,h2,h3,h4,h5,h6 {
+  margin: 0;
+}
+
+.main-card .row {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
 
 .main-card > * + * {
-	margin-top: 8px;
+	margin-top: 16px;
+}
+.main-card > .top > * + * {
+	margin-top: 10px;
+}
+.main-card .row > * + * {
+  margin-left: 8px;
 }
 
 .container {
 	height: 100%;
-	width: auto;
+	width: 100%;
 	display: flex;
 	flex-direction: column;
 	flex-wrap: nowrap;
@@ -105,15 +109,15 @@ main {
 	color: #aaa;
 	background-color: var(--background-color);
 	transition: background-color 1s ease, color 1s ease, transform .2s ease, box-shadow .2s ease;
-	min-width: 320px;
+	min-width: 220px;
+}
+
+@media (max-width: 560px) {
+  .container { min-width: unset; }
 }
 
 .container > .count {
 	font-size: 2em;
-}
-
-.container + .container {
-	margin-top: 8px;
 }
 
 .container[data-type=seconds] {
@@ -155,7 +159,6 @@ main {
 
 .container[data-type=picker] {
   min-width: 300px;
-  margin-top: 16px;
 }
 
 .container[data-type=picker] input {
