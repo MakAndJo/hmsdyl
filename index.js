@@ -12,6 +12,31 @@ const mn_subtitle = document.querySelector(".container[data-type=month] > div.su
 const yy_counter = document.querySelector(".container[data-type=years] > div.count");
 const yy_subtitle = document.querySelector(".container[data-type=years] > div.subtitle");
 
+function getUrlParameter(name) {
+  name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+  var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+  var results = regex.exec(location.search);
+  return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+}
+
+function queryUpdate(params = {}) {
+  var url = new URL(location.href);
+  Object.entries(params).forEach(([key, value]) => value ? url.searchParams.set(key, value) : url.searchParams.delete(key));
+  location.href = url.toString();
+}
+
+function parseBool(value = "") {
+  return (value.toLocaleLowerCase() == "true" || value == "1");
+};
+
+function parseNum(value = "", default_value = 0) {
+  default_value ||= 0;
+  if (!value) return default_value;
+  const num = parseInt(value);
+  if (num == NaN) return default_value;
+  return num;
+};
+
 /**
  * Declination value
  * @param {Number} - value
@@ -60,7 +85,7 @@ function shallowEqual(objA, objB) {
   }
 
   if (typeof objA !== 'object' || objA === null ||
-      typeof objB !== 'object' || objB === null) {
+    typeof objB !== 'object' || objB === null) {
     return false;
   }
 
@@ -84,13 +109,11 @@ function shallowEqual(objA, objB) {
   return true;
 }
 
-function monthDifference(dateFrom, dateTo) {
-  return dateTo.getMonth() - dateFrom.getMonth() +
-    (12 * (dateTo.getFullYear() - dateFrom.getFullYear()))
-}
-const yearsDifference = (dateFrom, dateTo) => new Date(dateTo - dateFrom).getFullYear() - 1970
+const monthDifference = (dateFrom, dateTo) => dateTo.getMonth() - dateFrom.getMonth() +
+  (12 * (dateTo.getFullYear() - dateFrom.getFullYear()));
+const yearsDifference = (dateFrom, dateTo) => new Date(dateTo - dateFrom).getFullYear() - 1970;
 
-let dateFrom = new Date();
+let dateFrom = new Date(parseNum(getUrlParameter("date"), (new Date()).getTime()));
 let prevState = undefined;
 
 const updateContainer = () => {
