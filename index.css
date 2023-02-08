@@ -109,11 +109,15 @@ h1,h2,h3,h4,h5,h6 {
 	color: #aaa;
 	background-color: var(--background-color);
 	transition: background-color 1s ease, color 1s ease, transform .2s ease, box-shadow .2s ease;
-	min-width: 220px;
+}
+
+.row:nth-child(1) > .container,
+.row:nth-child(2) > .container {
+  min-width: 440px;
 }
 
 @media (max-width: 560px) {
-  .container { min-width: unset; }
+  .row > .container { min-width: unset !important; }
 }
 
 .container > .count {
