@@ -157,10 +157,11 @@ function copyTextToClipboard(text) {
   var dateFrom = new Date();
   function InitParams() {
     const title = getUrlParameter("title") || "How long have I lived?";
+    shareTitle.value = title;
+    document.title = `Ticky - ${title}`;
     dateFrom = new Date(parseNum(getUrlParameter("date"), (new Date()).getTime()));
     console.debug(">> time query", "->", dateFrom.getTime());
     picker.value = new Date(dateFrom.getTime() + new Date().getTimezoneOffset() * -60 * 1000).toISOString().slice(0, 19);
-    shareTitle.value = title;
   }
 
   var prevState = undefined;
