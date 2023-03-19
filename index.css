@@ -195,10 +195,15 @@ h6 {
   border: unset;
 }
 
+button {
+  cursor: pointer;
+}
+
 button#share-btn {
-  border: 2px solid #aaa;
-  border-radius: 8px;
-  padding: 12px;
+  display: flex;
+  border: none;
+  background: none;
+  padding: 0;
   font-size: .6em;
   font-weight: 500;
 }
