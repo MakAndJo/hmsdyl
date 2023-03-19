@@ -127,6 +127,9 @@ h6 {
   }
 }
 @media (max-width: 560px) {
+  .main-card {
+    width: 100%;
+  }
   .row > .container {
     min-width: unset !important;
   }
