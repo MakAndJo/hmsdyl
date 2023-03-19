@@ -1,5 +1,6 @@
 const picker = document.querySelector("input#datetime");
 const shareButton = document.querySelector("button#share-btn");
+const shareTitle = document.querySelector("input#share-title");
 const s_counter = document.querySelector(".container[data-type=seconds] > div.count");
 const s_subtitle = document.querySelector(".container[data-type=seconds] > div.subtitle");
 const m_counter = document.querySelector(".container[data-type=minutes] > div.count");
@@ -155,9 +156,11 @@ function copyTextToClipboard(text) {
 
   var dateFrom = new Date();
   function InitParams() {
+    const title = getUrlParameter("title") || "How long have I lived?";
     dateFrom = new Date(parseNum(getUrlParameter("date"), (new Date()).getTime()));
     console.debug(">> time query", "->", dateFrom.getTime());
-    picker.value = new Date(dateFrom.getTime() + new Date().getTimezoneOffset() * -60 * 1000).toISOString().slice(0, 19)
+    picker.value = new Date(dateFrom.getTime() + new Date().getTimezoneOffset() * -60 * 1000).toISOString().slice(0, 19);
+    shareTitle.value = title;
   }
 
   var prevState = undefined;
@@ -215,9 +218,13 @@ function copyTextToClipboard(text) {
     console.debug(">> time pick", "->", dateFrom.getTime());
   });
 
+  shareTitle.addEventListener("change", (e) => {
+    queryUpdate({ title: shareTitle.value });
+  });
+
   shareButton.addEventListener("click", (e) => {
     console.debug(">> time share", "->", dateFrom.getTime());
-    queryUpdate({ date: dateFrom.getTime() });
+    queryUpdate({ date: dateFrom.getTime(), title: shareTitle.value });
     if ('share' in navigator) {
       navigator.share({
         title: "UTMN Ticky",
