@@ -211,6 +211,7 @@ function copyTextToClipboard(text) {
     const value = e.target.value;
     dateFrom = new Date(value);
     console.debug(">> time pick", "->", dateFrom.getTime());
+    queryUpdate({ date: dateFrom.getTime() });
   });
 
   shareTitle.addEventListener("change", (e) => {
