@@ -230,7 +230,6 @@ function copyTextToClipboard(text) {
       });
     } else {
       copyTextToClipboard(location.href);
-      alert("Link is copied to your clipboard!");
     }
   });
 
