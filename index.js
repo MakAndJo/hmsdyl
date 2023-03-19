@@ -156,10 +156,10 @@ function copyTextToClipboard(text) {
 
   var dateFrom = new Date();
 
-  const updateTitle = (title) => document.title = `Ticky - ${title}`;
+  var updateTitle = (title) => document.title = `Ticky - ${title}`;
 
   var prevState = undefined;
-  const updateContainer = () => {
+  var updateContainer = () => {
     const t1 = new Date();
     const t2 = new Date(dateFrom);
     const dif = t1.getTime() - t2.getTime();
