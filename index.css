@@ -121,6 +121,11 @@ h6 {
 }
 
 @media (max-width: 620px) {
+  body {
+    font-size: 12px;
+  }
+}
+@media (max-width: 560px) {
   .row > .container {
     min-width: unset !important;
   }
@@ -128,6 +133,7 @@ h6 {
     font-size: 10px;
   }
 }
+
 
 .container > .count {
   font-size: 2em;
