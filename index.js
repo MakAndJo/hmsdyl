@@ -155,13 +155,6 @@ function copyTextToClipboard(text) {
 {
 
   var dateFrom = new Date();
-  function InitParams() {
-    shareTitle.value = getUrlParameter("title") || "How long have I lived?";
-    updateTitle(shareTitle.value);
-    dateFrom = new Date(parseNum(getUrlParameter("date"), (new Date()).getTime()));
-    console.debug(">> time query", "->", dateFrom.getTime());
-    picker.value = new Date(dateFrom.getTime() + new Date().getTimezoneOffset() * -60 * 1000).toISOString().slice(0, 19);
-  }
 
   const updateTitle = (title) => document.title = `Ticky - ${title}`;
 
@@ -240,6 +233,14 @@ function copyTextToClipboard(text) {
       alert("Link is copied to your clipboard!");
     }
   });
+
+  function InitParams() {
+    shareTitle.value = getUrlParameter("title") || "How long have I lived?";
+    updateTitle(shareTitle.value);
+    dateFrom = new Date(parseNum(getUrlParameter("date"), (new Date()).getTime()));
+    console.debug(">> time query", "->", dateFrom.getTime());
+    picker.value = new Date(dateFrom.getTime() + new Date().getTimezoneOffset() * -60 * 1000).toISOString().slice(0, 19);
+  }
 
   window.addEventListener("popstate", (e) => {
     InitParams();
