@@ -82,6 +82,7 @@ h6 {
 .main-card .row {
   display: flex;
   flex-direction: row;
+  align-items: center;
   width: 100%;
 }
 
@@ -192,4 +193,12 @@ h6 {
   height: 100%;
   font-size: 0.6em;
   border: unset;
+}
+
+button#share-btn {
+  border: 2px solid #aaa;
+  border-radius: 8px;
+  padding: 12px;
+  font-size: .6em;
+  font-weight: 500;
 }
