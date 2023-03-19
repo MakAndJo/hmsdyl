@@ -141,6 +141,7 @@ h6 {
 }
 
 .container > .row input {
+  padding: 2px;
   border: none;
   flex: 1;
   height: 100%;
