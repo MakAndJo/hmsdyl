@@ -218,7 +218,16 @@ function copyTextToClipboard(text) {
   shareButton.addEventListener("click", (e) => {
     console.debug(">> time share", "->", dateFrom.getTime());
     queryUpdate({ date: dateFrom.getTime() });
-    copyTextToClipboard(location.href);
+    if ('share' in navigator) {
+      navigator.share({
+        title: "UTMN Ticky",
+        text: "Calculate time since date!",
+        url: location.href,
+      });
+    } else {
+      copyTextToClipboard(location.href);
+      alert("Link is copied to your clipboard!");
+    }
   });
 
   window.addEventListener("popstate", (e) => {
