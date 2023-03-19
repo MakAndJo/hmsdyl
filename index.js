@@ -225,8 +225,7 @@ function copyTextToClipboard(text) {
     updateTitle(shareTitle.value);
     if ('share' in navigator) {
       navigator.share({
-        title: "UTMN Ticky",
-        text: "Calculate time since date!",
+        title: document.title,
         url: location.href,
       });
     } else {
