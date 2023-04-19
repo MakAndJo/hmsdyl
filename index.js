@@ -164,9 +164,9 @@ function copyTextToClipboard(text) {
     const t2 = new Date(dateFrom);
     const dif = t1.getTime() - t2.getTime();
     const seconds = Math.floor(dif / 1000);
-    const minutes = Math.floor(seconds / 60);
-    const hours = Math.floor(minutes / 60);
-    const days = Math.floor(hours / 24);
+    const minutes = seconds <= 0 ? Math.ceil(seconds / 60) : Math.floor(seconds / 60);
+    const hours = minutes <= 0 ? Math.ceil(minutes / 60) : Math.floor(minutes / 60);
+    const days = hours <= 0 ? Math.ceil(hours / 24) : Math.floor(hours / 24);
     const month = monthDifference(t2, t1);
     const years = yearsDifference(t2, t1);
     let nextState = {
