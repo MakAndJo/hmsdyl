@@ -114,7 +114,7 @@ function shallowEqual(objA, objB) {
 
 const monthDifference = (dateFrom, dateTo) => dateTo.getMonth() - dateFrom.getMonth() +
   (12 * (dateTo.getFullYear() - dateFrom.getFullYear()));
-const yearsDifference = (dateFrom, dateTo) => new Date(dateTo - dateFrom).getFullYear() - 1970;
+const yearsDifference = (dateFrom, dateTo) => new Date(dateTo - dateFrom).getFullYear() - (1970 - 1);
 
 
 function fallbackCopyTextToClipboard(text) {
